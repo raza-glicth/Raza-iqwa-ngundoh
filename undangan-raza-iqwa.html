@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Raza & Iqwa — Private Wedding</title>
+<meta name="description" content="A Small Celebration, With Our Favorite People — Raza Attaqi & Iqwa Futri Anggraini">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal-950:#121110;
+    --charcoal-900:#19170f;
+    --charcoal-850:#1f1c14;
+    --charcoal-800:#26221a;
+    --gold:#c9a24a;
+    --gold-light:#e5cb8c;
+    --gold-dim:rgba(201,162,74,0.35);
+    --cream:#efe7d6;
+    --muted:#a49a84;
+    --hairline:rgba(201,162,74,0.16);
+    --serif:'Fraunces', serif;
+    --sans:'Manrope', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--charcoal-950);
+    color:var(--cream);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body.locked{ overflow:hidden; height:100vh; }
+
+  img, .photo-frame{ display:block; max-width:100%; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--gold-dim); color:var(--cream); }
+
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:2;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Cover ---------- */
+  #cover{
+    position:fixed; inset:0; z-index:100;
+    background:
+      radial-gradient(120% 90% at 50% 0%, var(--charcoal-850) 0%, var(--charcoal-950) 65%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:32px;
+    transition:opacity 1s ease, visibility 1s ease;
+  }
+  #cover.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .cover-eyebrow{
+    font-family:var(--sans); font-size:11px; letter-spacing:0.32em;
+    color:var(--gold); text-transform:uppercase; font-weight:600;
+    margin-bottom:22px; opacity:0;
+    animation:riseIn 1s ease forwards 0.2s;
+  }
+
+  .cover-names{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(30px, 8vw, 44px); line-height:1.25;
+    color:var(--cream); margin-bottom:20px; opacity:0;
+    animation:riseIn 1.1s ease forwards 0.5s;
+  }
+  .cover-names .amp{ color:var(--gold-light); font-size:0.75em; margin:0 4px; }
+
+  .cover-line{
+    width:34px; height:1px; background:var(--gold-dim);
+    margin:0 auto 20px; opacity:0;
+    animation:riseIn 1s ease forwards 0.8s;
+  }
+
+  .cover-quote{
+    font-size:14px; color:var(--muted); max-width:280px;
+    font-style:italic; margin-bottom:44px; opacity:0;
+    animation:riseIn 1s ease forwards 1s;
+  }
+
+  .btn-open{
+    opacity:0; animation:riseIn 1s ease forwards 1.3s;
+  }
+
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--sans); font-size:12px; letter-spacing:0.2em; font-weight:600;
+    text-transform:uppercase; color:var(--charcoal-950);
+    background:linear-gradient(135deg, var(--gold-light), var(--gold));
+    padding:15px 30px; border:none; border-radius:2px; cursor:pointer;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow:0 8px 24px -8px rgba(201,162,74,0.5);
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(201,162,74,0.65); }
+  .btn:active{ transform:translateY(0); }
+
+  .btn-outline{
+    background:transparent; color:var(--gold-light);
+    border:1px solid var(--gold-dim); box-shadow:none;
+  }
+  .btn-outline:hover{ border-color:var(--gold); background:rgba(201,162,74,0.06); }
+
+  /* ---------- Sections ---------- */
+  section{ position:relative; padding:96px 0; }
+
+  .eyebrow{
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:14px; display:block;
+  }
+
+  .section-title{
+    font-family:var(--serif); font-weight:400; font-size:clamp(26px, 6vw, 34px);
+    color:var(--cream); line-height:1.3;
+  }
+
+  .divider{
+    width:100%; height:1px;
+    background:linear-gradient(90deg, transparent, var(--hairline) 50%, transparent);
+  }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Hero ---------- */
+  #hero{ padding-top:64px; text-align:center; }
+
+  .hero-photo{
+    position:relative; width:100%; aspect-ratio:4/5; border-radius:3px;
+    overflow:hidden; margin-bottom:32px;
+    background:
+      linear-gradient(155deg, var(--charcoal-800), var(--charcoal-900));
+    border:1px solid var(--hairline);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:center;
+    display:block;
+  }
+  .hero-photo .ph-fallback{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:10px; color:var(--muted); font-size:12px;
+    letter-spacing:0.08em; text-align:center; padding:20px;
+  }
+  .hero-photo .ph-fallback svg{ width:26px; height:26px; opacity:0.5; }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(18,17,16,0.55) 0%, transparent 40%);
+    pointer-events:none;
+  }
+
+  .hero-label{ font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+
+  .hero-names{
+    font-family:var(--serif); font-weight:400; font-size:clamp(32px, 9vw, 46px);
+    line-height:1.2; margin-bottom:10px;
+  }
+  .hero-names .amp{ font-style:italic; color:var(--gold-light); }
+
+  .hero-date{ color:var(--muted); font-size:14px; letter-spacing:0.02em; margin-bottom:40px; }
+
+  .countdown{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; max-width:400px; margin:0 auto;
+  }
+  .cd-item{
+    padding:16px 4px; border:1px solid var(--hairline); border-radius:3px;
+    background:rgba(201,162,74,0.03);
+  }
+  .cd-num{ font-family:var(--serif); font-size:clamp(22px, 6vw, 28px); color:var(--gold-light); }
+  .cd-label{ font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+  /* ---------- Our Chapter ---------- */
+  #chapter .wrap{ text-align:left; }
+  #chapter .section-title{ margin-bottom:28px; }
+  .chapter-text{
+    font-size:15.5px; color:#d8d0bf; line-height:1.9;
+  }
+  .chapter-text p{ margin-bottom:18px; }
+  .chapter-text .lead{
+    font-family:var(--serif); font-style:italic; font-size:19px; color:var(--gold-light);
+    line-height:1.6; margin-bottom:22px;
+  }
+
+  /* ---------- Akad / Wedding Private ---------- */
+  #events .wrap{ text-align:center; }
+  #events .section-title{ margin-bottom:8px; }
+  #events .eyebrow{ text-align:center; }
+  .events-sub{ color:var(--muted); font-size:13.5px; margin-bottom:48px; }
+
+  .event-card{
+    text-align:left; padding:28px 26px; border:1px solid var(--hairline);
+    border-radius:3px; margin-bottom:18px; position:relative;
+    background:linear-gradient(160deg, rgba(201,162,74,0.04), transparent 60%);
+  }
+  .event-tag{ font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; display:block; }
+  .event-name{ font-family:var(--serif); font-size:22px; color:var(--cream); margin-bottom:10px; }
+  .event-date{ color:var(--gold-light); font-size:14px; margin-bottom:14px; }
+  .event-place{ color:var(--muted); font-size:13.5px; line-height:1.7; }
+
+  /* ---------- Small Celebration ---------- */
+  #small{
+    background:var(--charcoal-900);
+    text-align:center;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+  }
+  .small-quote{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(21px, 5.6vw, 27px); line-height:1.6; color:var(--cream);
+    margin-bottom:26px;
+  }
+  .small-quote span{ display:block; }
+  .small-note{ color:var(--muted); font-size:13.5px; max-width:340px; margin:0 auto; }
+
+  /* ---------- Gallery ---------- */
+  #gallery .wrap{ max-width:none; padding:0; }
+  #gallery .head-wrap{ max-width:520px; margin:0 auto; padding:0 28px; text-align:center; }
+  #gallery .section-title{ margin-bottom:8px; }
+  #gallery .eyebrow{ text-align:center; }
+  .gallery-sub{ color:var(--muted); font-size:13.5px; margin-bottom:36px; text-align:center; }
+
+  .gallery-strip{
+    display:flex; gap:14px; overflow-x:auto; padding:0 28px 12px;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  }
+  .gallery-strip::-webkit-scrollbar{ height:4px; }
+  .gallery-strip::-webkit-scrollbar-thumb{ background:var(--gold-dim); border-radius:2px; }
+
+  .g-item{
+    flex:0 0 68%; aspect-ratio:3/4; border-radius:3px; overflow:hidden;
+    scroll-snap-align:center; position:relative;
+    background:linear-gradient(155deg, var(--charcoal-800), var(--charcoal-900));
+    border:1px solid var(--hairline);
+    transition:transform 0.4s ease;
+  }
+  .g-item img{ width:100%; height:100%; object-fit:cover; }
+  .g-item .ph-fallback{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--muted); font-size:11px; letter-spacing:0.06em; flex-direction:column; gap:8px;
+  }
+  .g-item .ph-fallback svg{ width:20px; height:20px; opacity:0.45; }
+
+  /* ---------- RSVP ---------- */
+  #rsvp .wrap{ text-align:center; }
+  #rsvp .eyebrow{ text-align:center; }
+  #rsvp .section-title{ margin-bottom:10px; }
+  .rsvp-note{ color:var(--muted); font-size:13.5px; max-width:360px; margin:0 auto 36px; line-height:1.7; }
+
+  form#rsvpForm{ text-align:left; }
+
+  .field{ margin-bottom:20px; }
+  .field label{
+    display:block; font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:9px;
+  }
+  .field input[type=text],
+  .field input[type=number],
+  .field textarea{
+    width:100%; background:var(--charcoal-850); border:1px solid var(--hairline);
+    color:var(--cream); font-family:var(--sans); font-size:14.5px; font-weight:400;
+    padding:13px 14px; border-radius:2px; outline:none;
+    transition:border-color 0.3s ease, background 0.3s ease;
+  }
+  .field input:focus, .field textarea:focus{ border-color:var(--gold); background:var(--charcoal-800); }
+  .field textarea{ resize:vertical; min-height:90px; }
+
+  .attend-toggle{ display:flex; gap:10px; }
+  .attend-toggle input{ display:none; }
+  .attend-toggle label{
+    flex:1; text-align:center; padding:13px 8px; border:1px solid var(--hairline);
+    border-radius:2px; font-size:13px; color:var(--muted); cursor:pointer;
+    transition:all 0.3s ease; letter-spacing:0.02em; text-transform:none; font-weight:400;
+  }
+  .attend-toggle input:checked + label{
+    border-color:var(--gold); color:var(--gold-light); background:rgba(201,162,74,0.08);
+  }
+
+  #rsvpForm .btn{ width:100%; justify-content:center; margin-top:6px; }
+
+  .rsvp-thanks{
+    display:none; text-align:center; padding:30px 20px; border:1px solid var(--hairline);
+    border-radius:3px; background:rgba(201,162,74,0.04);
+  }
+  .rsvp-thanks.show{ display:block; }
+  .rsvp-thanks .rt-title{ font-family:var(--serif); font-style:italic; font-size:22px; color:var(--gold-light); margin-bottom:8px; }
+  .rsvp-thanks p{ color:var(--muted); font-size:13.5px; }
+
+  /* ---------- Location ---------- */
+  #location .wrap{ text-align:center; }
+  #location .eyebrow{ text-align:center; }
+  #location .section-title{ margin-bottom:18px; }
+  .loc-address{
+    color:#d8d0bf; font-size:14.5px; line-height:1.9; margin-bottom:32px;
+    padding:22px; border:1px solid var(--hairline); border-radius:3px;
+    background:rgba(201,162,74,0.03);
+  }
+  .loc-address strong{ color:var(--gold-light); font-weight:500; display:block; margin-bottom:6px; }
+
+  /* ---------- Closing ---------- */
+  #closing{
+    text-align:center; padding:120px 0 100px;
+    background:radial-gradient(120% 80% at 50% 100%, var(--charcoal-850), var(--charcoal-950) 70%);
+  }
+  .closing-quote{
+    font-family:var(--serif); font-style:italic; font-size:clamp(22px, 6.4vw, 30px);
+    color:var(--cream); margin-bottom:28px; line-height:1.5;
+  }
+  .closing-names{
+    font-family:var(--serif); font-size:clamp(26px, 7vw, 32px); color:var(--gold-light); margin-bottom:10px;
+  }
+  .closing-date{ color:var(--muted); font-size:13px; letter-spacing:0.12em; }
+
+  footer.credit{
+    text-align:center; padding:26px 20px; color:var(--muted); font-size:11px;
+    letter-spacing:0.06em; border-top:1px solid var(--hairline);
+  }
+
+  /* ---------- Music toggle ---------- */
+  #musicToggle{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--charcoal-850); border:1px solid var(--gold-dim);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    opacity:0; visibility:hidden; transition:opacity 0.6s ease, transform 0.3s ease;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,0.5);
+  }
+  #musicToggle.visible{ opacity:1; visibility:visible; }
+  #musicToggle:hover{ transform:scale(1.06); }
+  #musicToggle svg{ width:17px; height:17px; stroke:var(--gold-light); }
+  #musicToggle .bars{ display:flex; align-items:flex-end; gap:2.5px; height:14px; }
+  #musicToggle .bars span{
+    width:2.5px; background:var(--gold-light); border-radius:1px;
+    animation:bar 1.1s ease-in-out infinite;
+  }
+  #musicToggle .bars span:nth-child(1){ height:6px; animation-delay:0s; }
+  #musicToggle .bars span:nth-child(2){ height:14px; animation-delay:0.15s; }
+  #musicToggle .bars span:nth-child(3){ height:9px; animation-delay:0.3s; }
+  #musicToggle.muted .bars span{ animation-play-state:paused; height:4px !important; }
+  @keyframes bar{ 0%,100%{ height:4px; } 50%{ height:14px; } }
+
+  @media (min-width:600px){
+    .wrap{ max-width:560px; }
+    section{ padding:120px 0; }
+  }
+</style>
+</head>
+<body class="locked">
+
+<div class="grain"></div>
+
+<!-- ================= COVER ================= -->
+<div id="cover">
+  <div class="cover-eyebrow">Private Wedding</div>
+  <div class="cover-names">Raza Attaqi <span class="amp">&amp;</span> Iqwa Futri Anggraini</div>
+  <div class="cover-line"></div>
+  <p class="cover-quote">&ldquo;Just a small celebration with the people we love.&rdquo;</p>
+  <button class="btn" id="openInvite">Open Invitation</button>
+</div>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-photo reveal">
+      <!-- Ganti src di bawah ini dengan foto pasangan -->
+      <img src="foto-hero.jpg" alt="Raza & Iqwa" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Taruh foto pasangan di sini</span>
+      </div>
+    </div>
+    <div class="hero-label reveal">Save The Date</div>
+    <h1 class="hero-names reveal">Raza <span class="amp">&amp;</span> Iqwa</h1>
+    <div class="hero-date reveal">Minggu, 30 Agustus 2026</div>
+
+    <div class="countdown reveal">
+      <div class="cd-item"><div class="cd-num" id="cd-days">00</div><div class="cd-label">Hari</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-hours">00</div><div class="cd-label">Jam</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-mins">00</div><div class="cd-label">Menit</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-secs">00</div><div class="cd-label">Detik</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= OUR CHAPTER ================= -->
+<section id="chapter">
+  <div class="wrap reveal">
+    <span class="eyebrow">Our Chapter</span>
+    <h2 class="section-title">Cerita Kami</h2>
+    <br>
+    <div class="chapter-text">
+      <p class="lead">Semua hal baik biasanya dimulai dari hal kecil yang nggak disangka-sangka.</p>
+      <p>Bukan dari momen besar atau dramatis — cuma obrolan random yang keterusan, ketawa yang nggak ada habisnya, dan waktu yang perlahan berubah jadi kebiasaan. Dari cerita receh sehari-hari, sampai akhirnya diam-diam mulai membicarakan masa depan.</p>
+      <p>Semakin lama, semakin sadar: orang yang paling nyaman diajak diam, ternyata orang yang paling ingin terus ada di setiap cerita berikutnya.</p>
+      <p>Dan sekarang, di sinilah kami. Memilih satu sama lain, untuk babak yang baru — dengan orang-orang yang paling kami sayangi ikut menyaksikan.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= AKAD & WEDDING PRIVATE ================= -->
+<section id="events">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">The Occasion</span>
+      <h2 class="section-title">Akad &amp; The Wedding Private</h2>
+      <p class="events-sub">Dua momen kecil, satu cerita besar.</p>
+    </div>
+
+    <div class="event-card reveal">
+      <span class="event-tag">Akad Nikah</span>
+      <div class="event-name">Akad</div>
+      <div class="event-date">Minggu, 30 Agustus 2026</div>
+      <div class="event-place">Berlangsung secara sederhana, hanya dihadiri keluarga dan orang-orang terdekat.</div>
+    </div>
+
+    <div class="event-card reveal">
+      <span class="event-tag">Reception</span>
+      <div class="event-name">The Wedding Private</div>
+      <div class="event-date">06 September 2026</div>
+      <div class="event-place">
+        Jl. Mangaan IV, Lk II, Mabar Hilir<br>
+        Lrg. Rahayu Timur, Gg. Bonsai
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SMALL CELEBRATION ================= -->
+<section id="small">
+  <div class="wrap reveal">
+    <span class="eyebrow">A Small Celebration</span>
+    <p class="small-quote">
+      <span>No big crowd.</span>
+      <span>No complicated plans.</span>
+      <span>Just us, a few close friends,</span>
+      <span>and a day worth remembering.</span>
+    </p>
+    <p class="small-note">Nggak ada gemerlap yang besar-besaran — cuma ruang kecil yang hangat, orang-orang yang berarti, dan satu hari yang pengen banget kami ingat selamanya.</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="head-wrap reveal">
+    <span class="eyebrow">Gallery</span>
+    <h2 class="section-title">Sekilas Cerita Kami</h2>
+    <p class="gallery-sub">Geser untuk lihat lebih banyak</p>
+  </div>
+  <div class="gallery-strip reveal">
+    <div class="g-item">
+      <img src="foto-gallery-1.jpg" alt="Raza & Iqwa" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Foto 01</span>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="foto-gallery-2.jpg" alt="Raza & Iqwa" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Foto 02</span>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="foto-gallery-3.jpg" alt="Raza & Iqwa" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Foto 03</span>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="" alt="" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Foto 04</span>
+      </div>
+    </div>
+    <div class="g-item">
+      <img src="" alt="" onerror="this.style.display='none'">
+      <div class="ph-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5.5-5.5-3 3-3.5-3.5L3 16"/></svg>
+        <span>Foto 05</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= RSVP ================= -->
+<section id="rsvp">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:36px;">
+      <span class="eyebrow">RSVP</span>
+      <h2 class="section-title">Konfirmasi Kehadiran</h2>
+      <p class="rsvp-note">Because this is a small gathering, please RSVP so we can save you a seat.</p>
+    </div>
+
+    <form id="rsvpForm" class="reveal">
+      <div class="field">
+        <label for="rname">Nama</label>
+        <input type="text" id="rname" name="rname" placeholder="Nama kamu" required>
+      </div>
+
+      <div class="field">
+        <label>Konfirmasi Kehadiran</label>
+        <div class="attend-toggle">
+          <input type="radio" id="att-yes" name="attend" value="Hadir" checked>
+          <label for="att-yes">Bisa Hadir</label>
+          <input type="radio" id="att-no" name="attend" value="Tidak Hadir">
+          <label for="att-no">Tidak Bisa</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rguests">Jumlah Tamu</label>
+        <input type="number" id="rguests" name="rguests" min="1" max="10" value="1">
+      </div>
+
+      <div class="field">
+        <label for="rmsg">Pesan untuk Raza &amp; Iqwa</label>
+        <textarea id="rmsg" name="rmsg" placeholder="Tulis doa atau ucapan..."></textarea>
+      </div>
+
+      <button type="submit" class="btn">Kirim RSVP</button>
+    </form>
+
+    <div class="rsvp-thanks" id="rsvpThanks">
+      <div class="rt-title">Terima kasih!</div>
+      <p>RSVP kamu sudah kami catat. Sampai jumpa di hari bahagia kami.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ================= LOCATION ================= -->
+<section id="location">
+  <div class="wrap reveal">
+    <span class="eyebrow">Location</span>
+    <h2 class="section-title">Lokasi Acara</h2>
+    <br>
+    <div class="loc-address">
+      <strong>The Wedding Private</strong>
+      Jl. Mangaan IV, Lk II, Mabar Hilir<br>
+      Lrg. Rahayu Timur, Gg. Bonsai
+    </div>
+    <a class="btn btn-outline" href="https://maps.app.goo.gl/jz6kXRPez53JCgwt8?g_st=ic" target="_blank" rel="noopener">Open Maps</a>
+  </div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section id="closing">
+  <div class="wrap reveal">
+    <p class="closing-quote">&ldquo;And so, our next chapter begins.&rdquo;</p>
+    <div class="closing-names">Raza &amp; Iqwa</div>
+    <div class="closing-date">06 . 09 . 2026</div>
+  </div>
+</section>
+
+<footer class="credit">Made with love, for the people we love.</footer>
+
+<!-- Music -->
+<audio id="bgMusic" loop preload="none">
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+<div id="musicToggle" aria-label="Mute atau unmute musik">
+  <div class="bars"><span></span><span></span><span></span></div>
+</div>
+
+<script>
+  // ---------- Open Invitation ----------
+  const cover = document.getElementById('cover');
+  const openBtn = document.getElementById('openInvite');
+  const music = document.getElementById('bgMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  let musicMuted = false;
+
+  openBtn.addEventListener('click', () => {
+    cover.classList.add('hide');
+    document.body.classList.remove('locked');
+    music.volume = 0.5;
+    music.play().catch(()=>{ /* browser blocked autoplay; user can use toggle */ });
+    musicToggle.classList.add('visible');
+    setTimeout(() => { document.querySelectorAll('.reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.9) el.classList.add('in');
+    }); }, 300);
+  });
+
+  musicToggle.addEventListener('click', () => {
+    musicMuted = !musicMuted;
+    music.muted = musicMuted;
+    musicToggle.classList.toggle('muted', musicMuted);
+    if(!musicMuted){ music.play().catch(()=>{}); }
+  });
+
+  // ---------- Scroll reveal ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Countdown ----------
+  // Target: hari resepsi "The Wedding Private" — sesuaikan bila perlu.
+  const target = new Date('2026-09-06T08:00:00+07:00').getTime();
+  function tick(){
+    const now = Date.now();
+    const diff = Math.max(0, target - now);
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---------- RSVP (demo, tanpa backend) ----------
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpThanks = document.getElementById('rsvpThanks');
+  rsvpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // Catatan: form ini belum terhubung ke backend/database.
+    // Untuk menyimpan data RSVP sungguhan, hubungkan ke Google Sheet, Formspree, atau layanan sejenis.
+    rsvpForm.style.display = 'none';
+    rsvpThanks.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
